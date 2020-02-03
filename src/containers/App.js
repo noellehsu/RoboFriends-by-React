@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBox from '../components/SearchBox';
 import CardList from '../components/CardList';
 import Scroll from '../components/Scroll';
+import ErrorBoundary from '../components/ErrorBoundary';
 //robots前後加括號，因為robot裡面不是export default，之後可能會更動
 import './App.css'
 
@@ -31,7 +32,7 @@ class App extends React.Component {
     }
 
     render() {
-        const {robots,searchfield} = this.state;
+        const { robots, searchfield } = this.state;
 
         const filteredRobots = robots.filter(robot => {
             return robot.name.toLowerCase().includes(searchfield.toLowerCase());
@@ -45,7 +46,9 @@ class App extends React.Component {
                     <h1 className='f1'>Robofriends</h1>
                     <SearchBox searchChange={this.onSearchChange} />
                     <Scroll>
-                        <CardList robots={filteredRobots} />
+                        <ErrorBoundary>
+                            <CardList robots={filteredRobots} />
+                        </ErrorBoundary>
                     </Scroll>
                 </div>
             );
