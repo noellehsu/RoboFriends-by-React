@@ -1,12 +1,24 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import SearchBox from '../components/SearchBox';
 import CardList from '../components/CardList';
 import Scroll from '../components/Scroll';
 import ErrorBoundary from '../components/ErrorBoundary';
-//robots前後加括號，因為robot裡面不是export default，之後可能會更動
 import './App.css'
+import {setSearchField} from '../action';
 
+//回傳一個物件
+const mapStateToProps  = state =>{
+    return{
+        searchField: state.searchRobots.searchField 
+    }
+}
 
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+    }   
+}
 
 class App extends React.Component {
     constructor() {
@@ -18,6 +30,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        console.log(this.props.store)
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
             .then(users => this.setState({ robots: users }));
@@ -58,4 +71,5 @@ class App extends React.Component {
     }
 }
 
-export default App;
+//connect方法會回傳一個方法
+export default connect(mapStateToProps,mapDispatchToProps)(App);
