@@ -1,6 +1,6 @@
 import React from 'react';
 //使用enzyme
-import {shallow, mount, render} from 'enzyme';
+// import {shallow, mount, render} from 'enzyme';
 
 
 const Card = ({id,name,email}) =>{

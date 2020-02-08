@@ -6,6 +6,8 @@ import Scroll from '../components/Scroll';
 import ErrorBoundary from '../components/ErrorBoundary';
 import './App.css'
 import {setSearchField,requestRobots} from '../action';
+import Header from '../components/Header';
+
 
 //searchField是searchRobots裡的一個state
 //state在這邊被轉換成屬性
@@ -34,6 +36,12 @@ class App extends React.Component {
     //         robots: []
     //     }
     // }
+    constructor() {
+        super()
+        this.state = {
+          count: 1
+        }
+      }
 
     componentDidMount() {
         this.props.onRequestRobots();
@@ -62,6 +70,7 @@ class App extends React.Component {
             return (
                 <div className='tc'>
                     <h1 className='f1'>Robofriends</h1>
+                    <Header count={this.state.count}/>
                     <SearchBox searchChange={onSearchChange} />
                     <Scroll>
                         <ErrorBoundary>
