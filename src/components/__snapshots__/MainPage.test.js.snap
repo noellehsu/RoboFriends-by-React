@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`filters robots correctly 1`] = `undefined`;
+
+exports[`render MainPage 1`] = `ShallowWrapper {}`;
