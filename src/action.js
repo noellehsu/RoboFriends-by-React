@@ -12,6 +12,7 @@ export const setSearchField = (text) => ({
         payload: text
 })
 
+//setSearchField是一般的action，下面這個是有加入thunk的action
 //回傳dispatch方法(thunkMiddleware會去監聽有哪個action是回傳function)
 export const requestRobots = () => (dispatch) => {
         dispatch({ type: REQUEST_ROBOTS_PENDING });
@@ -19,5 +20,4 @@ export const requestRobots = () => (dispatch) => {
         .then(response => response.json())
         .then(data => dispatch({type: REQUEST_ROBOTS_SUCCESS, payload:data}))
         .catch(error => dispatch({type:REQUEST_ROBOTS_FAILED, payload:error}))
-
 }
